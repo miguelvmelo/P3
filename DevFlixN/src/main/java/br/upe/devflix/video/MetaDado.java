@@ -20,7 +20,7 @@ public class MetaDado extends Entidade {
 
 	//Video
 	@ManyToOne
-	@JoinColumn(name = "id_video")
+	@JoinColumn(name = "video_id")
 	private Video video;
 
 

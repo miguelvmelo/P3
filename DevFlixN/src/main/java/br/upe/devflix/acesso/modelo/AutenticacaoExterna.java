@@ -1,10 +1,6 @@
-package br.upe.devflix.acesso;
+package br.upe.devflix.acesso.modelo;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -21,7 +17,7 @@ public class AutenticacaoExterna extends Entidade {
 	
 	//Usuario
 	@ManyToOne
-	@JoinColumn(name = "id_usuario")
+	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
 	

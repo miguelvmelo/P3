@@ -1,21 +1,17 @@
 package br.upe.devflix.video;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import br.upe.devflix.acesso.Notificacao;
+import br.upe.devflix.acesso.modelo.Notificacao;
 import br.upe.devflix.base.Entidade;
-import br.upe.devflix.categoria.Categoria;
-import br.upe.devflix.comentario.Comentario;
+import br.upe.devflix.categoria.modelo.Categoria;
+import br.upe.devflix.comentario.modelo.Comentario;
 
 
 @Entity
@@ -27,24 +23,24 @@ public class Video extends Entidade {
 	private String titulo;	
 	private String url;
 	private String descricao;
+	@ElementCollection
 	private List<String> tags;
 	private int ordemExibicao;
 	private boolean publico;
 	private boolean visivel;
 	private boolean bloqueado;
+	
+	//MetaDado
 	@OneToMany(mappedBy = "video")
 	private List<MetaDado> metadados;
-	private List<HistoricoVideo> historico;
-	//private Categoria categoria1;
-	private int id;
-
+	
 	//Notificacao
 	@OneToMany(mappedBy = "video")
 	private List<Notificacao>notificacao;
 
 	//Categoria
 	@ManyToOne
-	@JoinColumn(name = "id_categoria")
+	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 
 	//Comentario
@@ -52,9 +48,8 @@ public class Video extends Entidade {
 	private List<Comentario> comentarios;
 
 	//Historico Video
-	@ManyToOne
-	@JoinColumn(name = "id_historicoVideo")
-	private HistoricoVideo historico1;
+	@OneToMany(mappedBy = "video")
+	private List<HistoricoVideo> historico;
 
 	
 
@@ -141,13 +136,6 @@ public class Video extends Entidade {
 		this.historico = historico;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public Categoria getCategoria() {
 		return categoria;

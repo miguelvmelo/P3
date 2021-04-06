@@ -1,37 +1,62 @@
-package br.upe.devflix.categoria;
+package br.upe.devflix.canal.modelo;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+import br.upe.devflix.acesso.modelo.Usuario;
 import br.upe.devflix.base.Entidade;
+import br.upe.devflix.categoria.modelo.Categoria;
 
 
 @Entity
-public class HistoricoCategoria extends Entidade {
+public class Canal extends Entidade {
 
 	
 
 	private String nome;
 	private String descricao;
 	private String cor;
+	@ElementCollection
 	private List<String> tags;
 	private int ordemExibicao;
 	private boolean publica;
 	private boolean visivel;
 	private boolean bloqueada;
 	
+	
+	
+	//Usuario	
+	@ManyToMany(mappedBy = "canais")
+	private List<Usuario> usuarios;
+	
+	
+	//Historico Canal
+	@OneToMany(mappedBy = "canal")
+	private List<HistoricoCanal> historico;
+	
 	//Categoria
-	@OneToMany (mappedBy = "historico1")
-	private List<Categoria> categoria;
+	@OneToOne(mappedBy = "canal")
+	private Categoria categoria;
 	
 	
+	
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+	public List<HistoricoCanal> getHistorico() {
+		return historico;
+	}
+	public void setHistorico(List<HistoricoCanal> historico) {
+		this.historico = historico;
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -80,5 +105,7 @@ public class HistoricoCategoria extends Entidade {
 	public void setBloqueada(boolean bloqueada) {
 		this.bloqueada = bloqueada;
 	}
+	
+	
 	
 }

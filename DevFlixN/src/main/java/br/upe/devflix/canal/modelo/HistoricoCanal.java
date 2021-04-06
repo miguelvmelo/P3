@@ -1,49 +1,45 @@
-package br.upe.devflix.canal;
+package br.upe.devflix.canal.modelo;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import br.upe.devflix.acesso.Usuario;
 import br.upe.devflix.base.Entidade;
 
 
 @Entity
-public class Canal extends Entidade {
+@Table(name = "historico_canal")
+public class HistoricoCanal extends Entidade{
 
 	
 
 	private String nome;
 	private String descricao;
 	private String cor;
+	@ElementCollection
 	private List<String> tags;
 	private int ordemExibicao;
 	private boolean publica;
 	private boolean visivel;
 	private boolean bloqueada;
-	private Usuario usuario;
-	private List<HistoricoCanal> historico;
-	
-	//Usuario	
-	@ManyToMany(mappedBy = "canais")
-	private List<Usuario> usuarios;
-	
-	
-	//Historico Canal
+
+	//Canal
 	@ManyToOne
-	@JoinColumn(name = "id_historicoCanal")
-	private HistoricoCanal historico1;
+	@JoinColumn(name = "canal_id")
+	private Canal canal;
 	
-	
-	
+
+
+	public Canal getCanal() {
+		return canal;
+	}
+	public void setCanal(Canal canal) {
+		this.canal = canal;
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -92,18 +88,5 @@ public class Canal extends Entidade {
 	public void setBloqueada(boolean bloqueada) {
 		this.bloqueada = bloqueada;
 	}
-	public Usuario getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	public List<HistoricoCanal> getHistorico() {
-		return historico;
-	}
-	public void setHistorico(List<HistoricoCanal> historico) {
-		this.historico = historico;
-	}
-	
 	
 }

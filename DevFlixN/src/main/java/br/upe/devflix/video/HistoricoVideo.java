@@ -1,24 +1,24 @@
 package br.upe.devflix.video;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import br.upe.devflix.base.Entidade;
 
 @Entity
+@Table(name = "historico_video")
 public class HistoricoVideo extends Entidade {
 
 	
 	private String titulo;
 	private String url;
 	private String descricao;
+	@ElementCollection
 	private List<String> tags;
 	private int ordemExibicao;
 	private boolean publico;
@@ -26,8 +26,9 @@ public class HistoricoVideo extends Entidade {
 	private boolean bloqueado;
 
 	//Video
-	@OneToMany(mappedBy = "historico1")
-	private List<Video> videos;
+	@ManyToOne
+	@JoinColumn(name = "historico_video_id")
+	private Video video;
 
 
 	public String getTitulo() {

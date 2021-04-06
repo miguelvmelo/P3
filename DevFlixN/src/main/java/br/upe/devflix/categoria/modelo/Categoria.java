@@ -1,23 +1,25 @@
-package br.upe.devflix.canal;
+package br.upe.devflix.categoria.modelo;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+import br.upe.devflix.acesso.modelo.Notificacao;
 import br.upe.devflix.base.Entidade;
+import br.upe.devflix.canal.modelo.Canal;
+import br.upe.devflix.comentario.modelo.Comentario;
+import br.upe.devflix.video.Video;
 
 
 @Entity
-public class HistoricoCanal extends Entidade{
+public class Categoria extends Entidade{
 
-	
 
+	private int id;
 	private String nome;
 	private String descricao;
 	private String cor;
@@ -26,13 +28,36 @@ public class HistoricoCanal extends Entidade{
 	private boolean publica;
 	private boolean visivel;
 	private boolean bloqueada;
-
-	//Canal
-	@OneToMany(mappedBy = "historico1")
-	private List<Canal>canais;
 	
 
+	//Notificacao
+	@OneToMany(mappedBy = "categoria")
+	private List<Notificacao>notificacao;
 
+	//Video
+	@OneToMany(mappedBy = "categoria")
+	private List<Video> videos;
+
+	//Comentario
+	@OneToMany(mappedBy = "categoria")
+	private List<Comentario> comentarios;
+	
+	//Historico Categoria
+	@OneToMany(mappedBy = "categoria")
+	private List<HistoricoCategoria> historico;
+	
+	//Canal
+	@OneToOne
+	@JoinColumn(name = "canal_id", referencedColumnName = "id")
+	private Canal canal;
+
+
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -81,5 +106,6 @@ public class HistoricoCanal extends Entidade{
 	public void setBloqueada(boolean bloqueada) {
 		this.bloqueada = bloqueada;
 	}
+
 	
 }

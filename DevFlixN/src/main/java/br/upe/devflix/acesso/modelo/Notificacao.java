@@ -1,92 +1,120 @@
-package br.upe.devflix.acesso;
+package br.upe.devflix.acesso.modelo;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import br.upe.devflix.base.Entidade;
-import br.upe.devflix.categoria.Categoria;
-import br.upe.devflix.comentario.Comentario;
+import br.upe.devflix.categoria.modelo.Categoria;
+import br.upe.devflix.comentario.modelo.Comentario;
 import br.upe.devflix.video.Video;
-
 
 @Entity
 public class Notificacao extends Entidade {
 
-
-
-	private Usuario notificador;
-	private Usuario notificado;
-	@ManyToOne
-	@JoinColumn(name = "id_video")
-	private Video video;
-	@ManyToOne
-	@JoinColumn(name = "id_categoria")
-	private Categoria categoria;
-	private Comentario comentario;
+	@Enumerated(value = EnumType.STRING)
+	private SituacaoNotificacao situacao;
 	private String descricao;
-	//private SituacaoNotificacao situacao;
 
-	//Usuario
+	@OneToOne
+	@JoinColumn(name = "notificador_id")
+	private Usuario notificador;
+
+	@OneToOne
+	@JoinColumn(name = "notificado_id")
+	private Usuario notificado;
+
+	// Video
 	@ManyToOne
-	@JoinColumn(name = "id_usuario")
+	@JoinColumn(name = "video_id")
+	private Video video;
+
+	// Comentario
+	@ManyToOne
+	@JoinColumn(name = "comentario_id")
+	private Comentario comentario;
+
+	// Categoria
+	@ManyToOne
+	@JoinColumn(name = "categoria_id")
+	private Categoria categoria;
+
+	// private SituacaoNotificacao situacao;
+
+	// Usuario
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
-
-
-	//Video
-	@ManyToOne
-	@JoinColumn(name = "id_video")
-	private Video video1;
-
-
-
 
 	public Usuario getNotificador() {
 		return notificador;
 	}
+
 	public void setNotificador(Usuario notificador) {
 		this.notificador = notificador;
 	}
+
 	public Usuario getNotificado() {
 		return notificado;
 	}
+
 	public void setNotificado(Usuario notificado) {
 		this.notificado = notificado;
 	}
+
 	public Video getVideo() {
 		return video;
 	}
+
 	public void setVideo(Video video) {
 		this.video = video;
 	}
+
 	public Categoria getCategoria() {
 		return categoria;
 	}
+
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public Comentario getComentario() {
-		return comentario;
-	}
-	public void setComentario(Comentario comentario) {
-		this.comentario = comentario;
-	}
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	/*public SituacaoNotificacao getSituacao() {
+
+	public SituacaoNotificacao getSituacao() {
 		return situacao;
 	}
+
 	public void setSituacao(SituacaoNotificacao situacao) {
 		this.situacao = situacao;
 	}
+
+	public Comentario getComentario() {
+		return comentario;
+	}
+
+	public void setComentario(Comentario comentario) {
+		this.comentario = comentario;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	/*
+	 * public SituacaoNotificacao getSituacao() { return situacao; } public void
+	 * setSituacao(SituacaoNotificacao situacao) { this.situacao = situacao; }
 	 */
 
 }

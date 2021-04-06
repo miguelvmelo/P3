@@ -1,62 +1,38 @@
-package br.upe.devflix.categoria;
+package br.upe.devflix.categoria.modelo;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-import br.upe.devflix.acesso.Notificacao;
 import br.upe.devflix.base.Entidade;
-import br.upe.devflix.comentario.Comentario;
-import br.upe.devflix.video.Video;
 
 
 @Entity
-public class Categoria extends Entidade{
+@Table(name = "historico_categoria")
+public class HistoricoCategoria extends Entidade {
 
+	
 
-	private int id;
 	private String nome;
 	private String descricao;
 	private String cor;
+	@ElementCollection
 	private List<String> tags;
 	private int ordemExibicao;
 	private boolean publica;
 	private boolean visivel;
 	private boolean bloqueada;
-	private List<HistoricoCategoria> historico;
-
-	//Notificacao
-	@OneToMany(mappedBy = "categoria")
-	private List<Notificacao>notificacao;
-
-	//Video
-	@OneToMany(mappedBy = "categoria")
-	private List<Video> videos;
-
-	//Comentario
-	@OneToMany(mappedBy = "categoria")
-	private List<Comentario> comentario;
 	
-	//Historico Categoria
+	//Categoria
 	@ManyToOne
-	@JoinColumn(name = "id_historicoCateforia")
-	private HistoricoCategoria historico1;
-
-
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	@JoinColumn(name = "categoria_id")
+	private Categoria categoria;
+	
+	
 	public String getNome() {
 		return nome;
 	}
@@ -75,6 +51,7 @@ public class Categoria extends Entidade{
 	public void setCor(String cor) {
 		this.cor = cor;
 	}
+	
 	public List<String> getTags() {
 		return tags;
 	}
@@ -105,6 +82,5 @@ public class Categoria extends Entidade{
 	public void setBloqueada(boolean bloqueada) {
 		this.bloqueada = bloqueada;
 	}
-
 	
 }
