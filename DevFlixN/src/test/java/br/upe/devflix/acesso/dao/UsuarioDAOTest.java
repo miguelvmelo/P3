@@ -1,6 +1,5 @@
 package br.upe.devflix.acesso.dao;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -8,6 +7,7 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
@@ -17,16 +17,15 @@ import br.upe.devflix.acesso.modelo.Usuario;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@AutoConfigureTestDataBase(replace = Replace.NONE)
+@AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
-
 public class UsuarioDAOTest {
 	
 	@Autowired
 	private UsuarioDAO dao;
 	
 	@Test
-	public void testeIncluirLocalSucesso()
+	public void testeIncluirUsuarioSucesso()
 	{
 		long existentes = dao.count();
 		
