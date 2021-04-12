@@ -2,6 +2,7 @@ package br.upe.devflix.categoria.modelo;
 
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,7 +13,7 @@ import br.upe.devflix.acesso.modelo.Notificacao;
 import br.upe.devflix.base.Entidade;
 import br.upe.devflix.canal.modelo.Canal;
 import br.upe.devflix.comentario.modelo.Comentario;
-import br.upe.devflix.video.Video;
+import br.upe.devflix.video.modelo.Video;
 
 
 @Entity
@@ -23,6 +24,7 @@ public class Categoria extends Entidade{
 	private String nome;
 	private String descricao;
 	private String cor;
+	@ElementCollection
 	private List<String> tags;
 	private int ordemExibicao;
 	private boolean publica;

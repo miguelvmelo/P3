@@ -1,4 +1,4 @@
-package br.upe.devflix.video;
+package br.upe.devflix.video.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

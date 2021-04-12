@@ -1,4 +1,4 @@
-package br.upe.devflix.video;
+package br.upe.devflix.video.modelo;
 
 import java.util.List;
 

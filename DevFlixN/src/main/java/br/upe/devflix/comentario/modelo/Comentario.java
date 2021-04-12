@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import br.upe.devflix.acesso.modelo.Notificacao;
 import br.upe.devflix.base.Entidade;
 import br.upe.devflix.categoria.modelo.Categoria;
-import br.upe.devflix.video.Video;
+import br.upe.devflix.video.modelo.Video;
 
 @Entity
 public class Comentario extends Entidade {
