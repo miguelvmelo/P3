@@ -28,6 +28,8 @@ public class UsuarioServlet extends HttpServlet{
 		//PerfilAcesso perfilAcesso = req.getParameterNames();
 		
 		Usuario usuario = new Usuario(nome,senha);
+		
+		servico.incluir(usuario);
 	}
 	
 }
