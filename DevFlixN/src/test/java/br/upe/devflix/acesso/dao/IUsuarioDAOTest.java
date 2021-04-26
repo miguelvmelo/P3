@@ -19,10 +19,10 @@ import br.upe.devflix.acesso.modelo.Usuario;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
-public class UsuarioDAOTest {
+public class IUsuarioDAOTest {
 	
 	@Autowired
-	private UsuarioDAO dao;
+	private IUsuarioDAO dao;
 	
 	@Test
 	public void testeIncluirUsuarioSucesso()

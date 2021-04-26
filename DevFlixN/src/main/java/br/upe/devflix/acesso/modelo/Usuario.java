@@ -46,6 +46,15 @@ public class Usuario extends Entidade {
 	//inverseJoinColumns = @JoinColumn(name = "canal_id",referencedColumnName ="id" ))
 	private List<Canal> canais;
 
+	public Usuario() {}
+	
+	public Usuario(String nome, String senha) {
+		
+		this.nome = nome;
+		this.senha = senha;
+		
+	}
+
 	public PerfilAcesso getPerfilAcesso() {
 		return perfilAcesso;
 	}

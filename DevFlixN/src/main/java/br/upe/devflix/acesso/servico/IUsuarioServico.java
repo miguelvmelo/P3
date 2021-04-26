@@ -7,5 +7,7 @@ public interface IUsuarioServico {
 	void incluir(Usuario usuario);
 	
 	void excluir(Long id);
+	
+	
 
 }

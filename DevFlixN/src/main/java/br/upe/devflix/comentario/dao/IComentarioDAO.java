@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.upe.devflix.comentario.modelo.Comentario;
 
 @Repository
-public interface ComentarioDAO extends CrudRepository<Comentario, Long> {
+public interface IComentarioDAO extends CrudRepository<Comentario, Long> {
 
 }

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.upe.devflix.acesso.modelo.Usuario;
 
 @Repository
-public interface PerfilDAO extends CrudRepository<Usuario, Long> {
+public interface IPerfilDAO extends CrudRepository<Usuario, Long> {
 
 }
