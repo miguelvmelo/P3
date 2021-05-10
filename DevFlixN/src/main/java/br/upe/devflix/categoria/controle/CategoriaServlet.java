@@ -29,10 +29,41 @@ public class CategoriaServlet extends HttpServlet {
 		categoria.setNome(req.getParameter("nome"));
 		categoria.setDescricao(req.getParameter("descricao"));
 		categoria.setCor(req.getParameter("cor"));
+		categoria.setOrdemExibicao(1);
 		categoria.setVisivel(Boolean.valueOf(req.getParameter("visivel")));
+		categoria.setPublica(true);
 
-		servico.criar(categoria);
+		String mensagem = ("Categoria criada com sucesso");
+		try {
+			servico.criar(categoria);
+		} catch (Exception e) {
+			mensagem = e.getMessage();
+		}
+		resp.getOutputStream().print(mensagem);	
+		
 
+	}
+	
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		Categoria categoria = new Categoria();
+
+		categoria.setNome(req.getParameter("nome"));
+		categoria.setDescricao(req.getParameter("descricao"));
+		categoria.setCor(req.getParameter("cor"));
+		categoria.setOrdemExibicao(1);
+		categoria.setVisivel(Boolean.valueOf(req.getParameter("visivel")));
+		categoria.setPublica(true);
+		
+		String mensagem = ("Categoria alterada com sucesso");
+		try {
+			servico.alterar(categoria);
+		} catch (Exception e) {
+			mensagem = e.getMessage();
+		}
+		resp.getOutputStream().print(mensagem);		
+		
 	}
 
 }

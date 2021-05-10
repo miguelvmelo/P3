@@ -40,13 +40,41 @@ public class CategoriaServico implements ICategoriaServico {
 
 	@Override
 	public void excluir(Long id) {
+		if (id == null) {
+
+			throw new RuntimeException("Precisa ser informado o id da categoria");
+		}
+		if (dao.findById(id).isEmpty()) {
+
+			throw new RuntimeException("Nao existe uma categoria cadastrada com o id informado");
+		}
+
+		dao.deleteById(id);
 
 	}
+	
+	@Override
+	public void alterar(Categoria categoria) {
+		
+		List<Categoria> categoriaExistente = dao.findByNome(categoria.getNome());
+		if (categoriaExistente == null && categoriaExistente.size() < 0) {
 
+			throw new RuntimeException("Não existe uma categoria com esse nome");
+
+		}
+		
+		validarCamposObrigatoriosPadrao(categoria);
+		categoria.setBloqueada(false);
+		categoria.setVisivel(true);
+		
+		dao.save(categoria);
+		
+	}
+	
 	private void validarCamposObrigatoriosPadrao(Categoria categoria) {
 		if (categoria == null) {
 
-			throw new RuntimeException("Os dados do usuário precisa ser preenchido");
+			throw new RuntimeException("Os dados da categoria precisa ser preenchido");
 
 		}
 
@@ -71,4 +99,5 @@ public class CategoriaServico implements ICategoriaServico {
 
 		}
 	}
+
 }

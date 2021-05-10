@@ -7,5 +7,7 @@ public interface ICategoriaServico {
 	void criar(Categoria categoria);
 
 	void excluir(Long id);
+	
+	void alterar(Categoria categoria);
 
 }
