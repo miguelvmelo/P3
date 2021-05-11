@@ -7,12 +7,17 @@ import org.springframework.stereotype.Service;
 
 import br.upe.devflix.categoria.dao.ICategoriaDAO;
 import br.upe.devflix.categoria.modelo.Categoria;
+import br.upe.devflix.video.dao.IVideoDAO;
+import br.upe.devflix.video.modelo.Video;
 
 @Service
 public class CategoriaServico implements ICategoriaServico {
 
 	@Autowired
 	private ICategoriaDAO dao;
+	
+	@Autowired
+	private IVideoDAO daoVideo;
 
 	@Override
 	public void criar(Categoria categoria) {
@@ -39,18 +44,28 @@ public class CategoriaServico implements ICategoriaServico {
 	}
 
 	@Override
-	public void excluir(Long id) {
+	public void excluir(Long  id) {
+		
 		if (id == null) {
 
 			throw new RuntimeException("Precisa ser informado o id da categoria");
 		}
-		if (dao.findById(id).isEmpty()) {
+		
+		Categoria categoriaSelecionada = dao.findById(id).get();
+		
+		if (categoriaSelecionada == null) {
 
 			throw new RuntimeException("Nao existe uma categoria cadastrada com o id informado");
 		}
+		
+		List<Video> videos = daoVideo.findByCategoriaById(id);
+		
+		if(videos != null && !videos.isEmpty() ) {
 
+			throw new RuntimeException("Remova os vídeos da categoria antes de excluir");
+		}
+		
 		dao.deleteById(id);
-
 	}
 	
 	@Override

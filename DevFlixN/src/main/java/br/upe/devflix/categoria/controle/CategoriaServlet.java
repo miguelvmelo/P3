@@ -56,6 +56,13 @@ public class CategoriaServlet extends HttpServlet {
 		categoria.setVisivel(Boolean.valueOf(req.getParameter("visivel")));
 		categoria.setPublica(true);
 		
+		String id = req.getParameter("id");
+		
+		if(id != null && !id.isEmpty()) {
+			
+			categoria.setId(Long.valueOf(id));
+		}
+		
 		String mensagem = ("Categoria alterada com sucesso");
 		try {
 			servico.alterar(categoria);
@@ -63,6 +70,29 @@ public class CategoriaServlet extends HttpServlet {
 			mensagem = e.getMessage();
 		}
 		resp.getOutputStream().print(mensagem);		
+		
+	}
+	
+	protected void doDelete (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		Long idCategoria = null;
+		String id = req.getParameter("id");
+		
+		if(id != null && !id.isEmpty()) {
+			
+			idCategoria = Long.valueOf(id);
+			
+		}
+		
+		String mensagem = ("Categoria excluida com sucesso");
+		try {
+			servico.excluir(idCategoria);
+		} catch (Exception e) {
+			mensagem = e.getMessage();
+		}
+		resp.getOutputStream().print(mensagem);
+	
+		
 		
 	}
 
