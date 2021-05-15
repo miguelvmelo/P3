@@ -29,7 +29,7 @@ public class CategoriaServlet extends HttpServlet {
 		categoria.setNome(req.getParameter("nome"));
 		categoria.setDescricao(req.getParameter("descricao"));
 		categoria.setCor(req.getParameter("cor"));
-		categoria.setOrdemExibicao(1);
+		categoria.setOrdemExibicao(Integer.valueOf(req.getParameter("ordemExibicao")));
 		categoria.setVisivel(Boolean.valueOf(req.getParameter("visivel")));
 		categoria.setPublica(true);
 
@@ -52,7 +52,7 @@ public class CategoriaServlet extends HttpServlet {
 		categoria.setNome(req.getParameter("nome"));
 		categoria.setDescricao(req.getParameter("descricao"));
 		categoria.setCor(req.getParameter("cor"));
-		categoria.setOrdemExibicao(1);
+		categoria.setOrdemExibicao(Integer.valueOf(req.getParameter("ordemExibicao")));
 		categoria.setVisivel(Boolean.valueOf(req.getParameter("visivel")));
 		categoria.setPublica(true);
 		

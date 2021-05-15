@@ -58,7 +58,7 @@ public class CategoriaServico implements ICategoriaServico {
 			throw new RuntimeException("Nao existe uma categoria cadastrada com o id informado");
 		}
 		
-		List<Video> videos = daoVideo.findByCategoriaById(id);
+		List<Video> videos = daoVideo.findByCategoria(id);
 		
 		if(videos != null && !videos.isEmpty() ) {
 

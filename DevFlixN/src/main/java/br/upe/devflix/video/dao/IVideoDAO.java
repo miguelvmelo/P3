@@ -11,6 +11,6 @@ import br.upe.devflix.video.modelo.Video;
 @Repository
 public interface IVideoDAO extends CrudRepository<Video, Long> {
 
-	List<Video> findByCategoriaById(Long idCategoria);
+	List<Video> findByCategoria(Long idCategoria);
 	
 }
